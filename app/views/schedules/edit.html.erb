@@ -1,0 +1,47 @@
+<h3>スケジュール編集</h3>
+
+<% if flash[:renewal] %>
+ <p class="renewal"><%= flash[:renewal] %></p>
+<% end %>
+
+<%= render "shared/error", obj: @schedules %> 
+ 
+<%= form_with model: @schedules do |f| %>
+ 
+ <table>
+  <tr>
+   <th><%= f.label :title ,"タイトル" %></th>
+   <td><%= f.text_field :title %></td>
+  </tr>
+ 
+  <tr>
+   <th><%= f.label :startday ,"開始日" %></th>
+   <td><%= f.date_field :startday %></td>
+  </tr>
+ 
+  <tr>
+   <th><%= f.label :endday ,"終了日" %></th>
+   <td><%= f.date_field :endday %></td>
+  </tr>
+  
+  <tr>
+   <th><%= f.label :allday ,"終日" %></th>
+   <td>
+    <%= f.check_box(:allday, {}, true, false) %>
+    <p class="check_text">終日の場合はチェックを入れます</p>
+   </td>
+  </tr>
+ 
+  <tr>
+   <th><%= f.label :note ,"スケジュールメモ" %></th>
+   <td><%= f.text_area :note, rows: 10, cols: 50 %></td>
+  </tr>
+ </table>
+ 
+ <div>
+  <ul>
+   <li><%= f.submit "スケジュールの編集を完了する"%></li>
+   <li><%= link_to "スケジュール一覧に戻る", :schedules %></li>
+  </ul>
+ </div>
+<% end %>
