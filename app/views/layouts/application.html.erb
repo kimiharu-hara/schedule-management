@@ -11,6 +11,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="wrapper">
+      <header>
+        <h1>Ruby on Rails スケジュール管理アプリ</h1>
+      </header>
+      
+      <%= yield %>
+    
+      <footer>
+        <% if current_page?(:schedules) %>
+         <h1>現在の日時：<%= l(Time.now) %>   スケジュール合計：<%= Schedule.count %></h1>
+        <% else %>
+         <h1>現在の日時：<%= l(Time.now) %></h1>
+        <% end %>
+      </footer>
+    </div>
   </body>
+  
 </html>
